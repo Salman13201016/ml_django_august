@@ -26,7 +26,7 @@ list2 = ["a","b","c","d","e"]
 
 #list comprehension
 list3 = [x-(x*.05) if x>200 else x for x in list1 ]
-
+ 
 list4 = []
 
 for x in list1:

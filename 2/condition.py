@@ -7,7 +7,6 @@ size_name = len(name)
 size_email = len(email)
 size_phone  = len(phone)
 if size_name == 0 or size_email==0 or size_phone==0:
-
     print("the field can not be empty")
 else:
     #OV x = 1 and y = 9 || x and y = 0
