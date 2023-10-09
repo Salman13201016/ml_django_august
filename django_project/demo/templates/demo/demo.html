@@ -7,13 +7,33 @@
 </head>
 <body>
     <h1>Welcome to User Form</h1>
-    <form action="{% url 'user_index' %}" method="post">
+    <form action="{% url 'user_index' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="">Name</label>
         <input type="text" id="" name="name"><br><br>
         <label for="">Email</label>
-        <input type="text"  id="" name="email"><br>
+        <input type="text"  id="" name="email"><br><br>
+        <label for="">Image</label>
+        <input type="file"  id="" name="image"><br><br>
         <input type="submit" name="" id="" value="Submit"><br>
     </form>
+
+    <table>
+        <tr>
+          <th>SL</th>
+          <th>uname</th>
+          <th>email</th>
+          <th>image</th>
+        </tr>
+        {% for i in user_data %}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.email}}</td>
+          <td><img src="{{i.image.url}}"></td>
+        </tr>
+        {% endfor %}
+      </table>
+    
 </body>
 </html>
