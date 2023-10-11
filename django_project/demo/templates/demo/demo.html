@@ -24,6 +24,7 @@
           <th>uname</th>
           <th>email</th>
           <th>image</th>
+          <th>Action</th>
         </tr>
         {% for i in user_data %}
         <tr>
@@ -31,6 +32,7 @@
           <td>{{i.name}}</td>
           <td>{{i.email}}</td>
           <td><img src="{{i.image.url}}"></td>
+          <td><a href="{% url 'edit_index' i.id %}" target="_blank">Edit</a><a href="">Delete</a></td>
         </tr>
         {% endfor %}
       </table>

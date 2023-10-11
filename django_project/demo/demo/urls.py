@@ -24,5 +24,7 @@ urlpatterns = [
     # path("admin/", admin.site.urls),
     # path("",v.index,name='demo_index'),
     path("demo/",v.index,name='demo_index'),
-    path("user/",v.user, name='user_index')
+    path("user/",v.user, name='user_index'),
+    path("user/<int:id>",v.edit_index, name='edit_index'),
+    path("update/",v.update, name='update_index'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
