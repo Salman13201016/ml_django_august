@@ -1,4 +1,4 @@
-
+import re
 from django.shortcuts import render,redirect 
 from django.http import HttpResponse
 
@@ -26,6 +26,7 @@ def index(request):
     return render(request,'admin/user.html',data)
 
 def insert(request):
+
     role_id = request.POST.get('role_id')
     # return HttpResponse(type(role_id))
     name = request.POST.get('fname')
@@ -34,6 +35,8 @@ def insert(request):
     address = request.POST.get('address')
     pw = request.POST.get('pw')
     conpw = request.POST.get('conpw')
+    pattern = r"^[a-zA-Z0-9_.]+@gmail\.com$"
+    
     # HttpResponse(len(role))
     if(len(role_id)==0 or len(email) == 0 or len(phone) == 0 or len(address) == 0  or len(pw) == 0 or len(conpw) == 0):
         return HttpResponse('Empty field not accepted')
@@ -44,17 +47,21 @@ def insert(request):
             return HttpResponse('The password and confirm password does not match')
         elif(len(phone)!=11):
             return HttpResponse('The phone number must be at 11 digit')
+        elif not re.match(pattern, email):
+            return HttpResponse('Email is not validated')
+
         
         else:
             user_obj = User()
             role_obj = Role.objects.get(id=role_id)
-            user_obj.name = name
-            user_obj.email = email
-            user_obj.phone = phone
-            user_obj.address = address
-            user_obj.pw = pw
-            user_obj.role_id = role_obj
-            user_obj.save()
+            User.objects.create(name=name,email=email,phone=phone,address=address,pw=pw,role_id=role_obj)
+            # user_obj.name = name
+            # user_obj.email = email
+            # user_obj.phone = phone
+            # user_obj.address = address
+            # user_obj.pw = pw
+            # user_obj.role_id = role_obj
+            # user_obj.save()
             return redirect('user_index')
 
     

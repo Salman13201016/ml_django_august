@@ -19,14 +19,25 @@ def index(request):
 
 def insert(request):
     role = request.POST.get('role')
+    
     # HttpResponse(len(role))
     if(len(role)==0):
         messages.success(request,"The field can not be empty")
     else:
-        role_obj = Role()
-        role_obj.name = role 
-        role_obj.save()
-        messages.success(request,"User Role has been created Successfully")
+
+        created_role = Role.objects.get_or_create(name=role)
+        print(created_role)
+        # role_obj = Role()
+        # role_obj.name = role 
+        # role_obj.save()
+        if(created_role==True):
+            print(1)
+
+            messages.success(request,"User Role has been created Successfully")
+        else:
+            print(2)
+
+            messages.success(request,"User Role Already Existed")
     
     
     return redirect('index')
