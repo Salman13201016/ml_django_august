@@ -3,8 +3,11 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Role
 from django.contrib import messages
+from django.core.mail import send_mail
+
 
 def index(request):
+    send_mail("write you subject","How are you?",'salmanmdsmdsultan92@gmail.com',['aminulmahi12@gmail.com'])
     all_data = Role.objects.all()
     if(len(all_data)==0):
         status = False
