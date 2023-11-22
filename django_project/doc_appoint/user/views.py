@@ -4,8 +4,29 @@ from django.http import HttpResponse
 
 from role.models import Role
 from . models import User
+from datetime import datetime
+import random
+
+from django.core.signing import Signer
 
 def index(request):
+
+    current_time = datetime.now().strftime("%H:%M:%S")
+    h, m, s =  map(int, current_time.split(':'))
+    t_s = h*3600 + m*60 + s
+    t_s = str(t_s)
+    random_number = random.choices('123456790',k=4)
+    random_number = ''.join(random_number)
+    v_c = t_s + random_number
+    signer = Signer()
+    encrypted_value = signer.sign(v_c)
+    encrypted_value1 = signer.sign(v_c).split(":")[1]
+    decrypted_value = signer.unsign(encrypted_value)
+    
+    print(v_c)
+    print(encrypted_value1)
+    print(decrypted_value)
+
     #prefetch_related
     all_data = Role.objects.all().order_by('pk')
     all_user_data = User.objects.select_related('role_id').all()

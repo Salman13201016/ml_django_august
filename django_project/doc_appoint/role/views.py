@@ -7,6 +7,8 @@ from django.core.mail import send_mail
 
 
 def index(request):
+    duplicate_entries = Role.objects.filter(id='1')
+    duplicate_entries.delete()
     send_mail("write you subject","How are you?",'salmanmdsmdsultan92@gmail.com',['aminulmahi12@gmail.com'])
     all_data = Role.objects.all()
     if(len(all_data)==0):

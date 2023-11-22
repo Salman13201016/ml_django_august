@@ -8,5 +8,7 @@ class User(models.Model):
     phone = models.CharField(max_length=500)
     address = models.TextField()
     pw = models.CharField(max_length=500)
+    v_code = models.CharField(max_length=500,unique=True)
+    v_status = models.CharField(max_length=500)
 
 # Create your models here.
