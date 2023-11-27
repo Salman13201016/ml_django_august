@@ -22,6 +22,8 @@ from . import views as v
 urlpatterns = [
     # path("admin/", admin.site.urls),
     path("", v.index,name='user_index'),
+    # path("", v.index,name='user_index'),
     path("insert", v.insert,name='user_insert'),
+    path("email_verification/<str:id>", v.email_verify,name='email_verify'),
     
 ]

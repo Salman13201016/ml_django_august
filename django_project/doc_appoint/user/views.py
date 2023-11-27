@@ -9,8 +9,20 @@ import random
 
 from django.core.signing import Signer
 
-def index(request):
+from django.core.mail import send_mail
 
+from django.utils.html import format_html
+
+def email_verify(request,id):
+
+    v_code = id
+    user = User.objects.get(v_code=v_code)
+    user.v_status = 1 #Update User set v_status=1 Where v_code=v_code
+    user.save()
+    user_data = {"u_data":user}
+    return render(request,'admin/congrats.html',user_data)
+
+def email_generate(name):
     current_time = datetime.now().strftime("%H:%M:%S")
     h, m, s =  map(int, current_time.split(':'))
     t_s = h*3600 + m*60 + s
@@ -22,11 +34,13 @@ def index(request):
     encrypted_value = signer.sign(v_c)
     encrypted_value1 = signer.sign(v_c).split(":")[1]
     decrypted_value = signer.unsign(encrypted_value)
-    
-    print(v_c)
-    print(encrypted_value1)
-    print(decrypted_value)
 
+
+    link = f"<p>Congratulations Mr {name} ! For registering as a user in our doctor appointment system. To confirm the registration </p><a href='http://127.0.0.1:8000/admin/user/email_verification/"+encrypted_value1+"' target='_blank'>please click this Activation link</a>"
+    formatted_link = format_html(link)
+    return encrypted_value1,formatted_link
+
+def index(request):
     #prefetch_related
     all_data = Role.objects.all().order_by('pk')
     all_user_data = User.objects.select_related('role_id').all()
@@ -75,7 +89,11 @@ def insert(request):
         else:
             user_obj = User()
             role_obj = Role.objects.get(id=role_id)
-            User.objects.create(name=name,email=email,phone=phone,address=address,pw=pw,role_id=role_obj)
+            vcode, link = email_generate(name) 
+            User.objects.create(name=name,email=email,phone=phone,address=address,pw=pw,v_code =vcode, v_status=0, role_id=role_obj)
+
+               
+            send_mail(f"Mr. {name} Please Confirm Your Registration - Doc.com",link,'salmanmdsmdsultan92@gmail.com',[email],html_message=link)
             # user_obj.name = name
             # user_obj.email = email
             # user_obj.phone = phone
