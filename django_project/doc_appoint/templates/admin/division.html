@@ -6,7 +6,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Innovative Doc appointment - User</title>
+        <title>Innovative Doc appointment - Role</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'admin/assets/img/favicon.png' %}">
@@ -19,8 +19,6 @@
 		
 		<!-- Feathericon CSS -->
         <link rel="stylesheet" href="{% static 'admin/assets/css/feathericon.min.css' %}">
-		<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
-    	<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 		
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{% static 'admin/assets/css/style.css' %}">
@@ -182,10 +180,10 @@
 								<a href="{% url 'index' %}"><i class="fe fe-home"></i> <span>Role</span></a>
 							</li>
 							<li> 
-								<a href="{% url 'index' %}"><i class="fe fe-home"></i> <span>User</span></a>
+								<a href="{% url 'user_index' %}"><i class="fe fe-home"></i> <span>User</span></a>
 							</li>
 
-							<li> 
+                            <li> 
 								<a href="{% url 'division_index' %}"><i class="fe fe-home"></i> <span>Division</span></a>
 							</li>
 							
@@ -210,10 +208,10 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">User Inputs</h3>
+								<h3 class="page-title">Division Inputs</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active">User</li>
+									<li class="breadcrumb-item active">Division</li>
 								</ul>
 							</div>
 						</div>
@@ -224,66 +222,32 @@
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">User</h4>
+									<h4 class="card-title">Divison</h4>
 								</div>
+								{% if msg %}
+									{% for i in msg %}
+									
+									<div class="alert alert-success">
+										<h4 class="card-title">{{i}}</h4>
+									</div>
+									{% endfor %}
+								{% endif %}
 								<div class="card-body">
-									<form action="{% url 'user_insert' %}" method="POST">
-										{% csrf_token %}
+									<form>
+										
 										<div class="form-group row">
-											<label class="col-form-label col-md-2">Role</label>
+											<label class="col-form-label col-md-2">Division</label>
 											<div class="col-md-10">
-												<select class="form-control" name="role_id">
-													<option>Select Role</option>
-													{% for i in all_data %}
-													<option value="{{i.id}}">{{i.name}}</option>
-													{% endfor %}
-												</select>
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-form-label col-md-2">Full Name</label>
-											<div class="col-md-10">
-												<input type="text" class="form-control" name="fname">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-form-label col-md-2">Email</label>
-											<div class="col-md-10">
-												<input type="email" class="form-control" name="email">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-form-label col-md-2">Phone Number</label>
-											<div class="col-md-10">
-												<input type="text" class="form-control" name="phone">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-form-label col-md-2">Address</label>
-											<div class="col-md-10">
-												<textarea name="address" id="address" cols="30" rows="10"></textarea>
-												
+												<input type="text" class="form-control division_input" name="division">
 											</div>
 										</div>
 
-										<div class="form-group row">
-											<label class="col-form-label col-md-2">Password</label>
-											<div class="col-md-10">
-												<input type="password" class="form-control" name="pw">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-form-label col-md-2">Confirm Password</label>
-											<div class="col-md-10">
-												<input type="password" class="form-control" name="conpw">
-											</div>
-										</div>
+                                        <input type="hidden" name="" class="csrf" value="{{csrf_token}}">
 										<div class="form-group row">
 											<div class="col-md-2">
-												<input type="submit" class="form-control" value="Add" >
+												<input type="button" class="form-control sub_division" value="Add"  >
 											</div>
 										</div>
-
 
 									</form>
 								</div>
@@ -291,52 +255,6 @@
 
 						</div>
 
-						
-						<div class="col-lg-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Role Information</h4>
-								</div>
-								<div class="card-body">
-
-									<div class="table-responsive">
-										<table class="datatable table table-stripped">
-											<thead>
-												<tr>
-													<th>SL</th>
-													<th>Name</th>
-													<th>Email</th>
-													<th>Phone Number</th>
-													<th>Address</th>
-													<th>Role</th>
-												</tr>
-											</thead>
-											<tbody>
-												{% if status_u %}
-													{% for i in user_data %}
-														<tr>
-															<td>{{forloop.counter}}</td>
-															<td>{{i.name}}</td>
-															<td>{{i.email}}</td>
-															<td>{{i.phone}}</td>
-															<td>{{i.address}}</td>
-															<td>{{i.role_id.name}}</td>
-														</tr>
-													{% endfor %}
-												{% else %}
-													<tr>
-														<td>The is no data available</td>
-														
-													</tr>
-												{% endif %}
-												
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						
 					</div>
 				
 				</div>			
@@ -360,10 +278,7 @@
 		
 		<!-- Custom JS -->
 		<script  src="{% static 'admin/assets/js/script.js' %}"></script>
-		<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
-		<script>
-			CKEDITOR.replace('address');  // Replace the textarea with CKEditor.
-		</script>
+        <script  src="{% static 'admin/assets/js/division.js' %}"></script>
 		
     </body>
 

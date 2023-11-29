@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'role',
     'user',
     'ckeditor',
+    'division',
 ]
 
 MIDDLEWARE = [
