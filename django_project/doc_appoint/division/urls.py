@@ -22,6 +22,7 @@ from . import views as v
 urlpatterns = [
     # path("admin/", admin.site.urls),
     path("", v.index,name='division_index'),
+    path("show/", v.show,name='division_show'),
     path("insert/", v.insert,name='division_insert'),
     
 ]

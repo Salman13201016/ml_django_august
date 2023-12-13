@@ -7,7 +7,19 @@ from .models import Divisions
 # Create your views here.
 
 def index(request):
+
     return render(request,'admin/division.html')
+
+def show(request):
+    query = Divisions.objects.values()
+
+    data = list(query)
+
+    all_d = {'d':data}
+    # print(div_name)
+
+
+    return JsonResponse(all_d)
 
 def insert(request):
     
@@ -15,7 +27,13 @@ def insert(request):
     div_obj = Divisions()
     div_obj.name = div_name
     div_obj.save()
+
+    query = Divisions.objects.values()
+
+    data = list(query)
+
+    all_d = {'d':data}
     print(div_name)
 
 
-    return JsonResponse({'message':"success"})
+    return JsonResponse(all_d)
