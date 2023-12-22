@@ -1,0 +1,13 @@
+[Unit]
+Description=Celery Worker Service
+After=network.target
+
+[Service]
+User=djangoinnovative
+Group=djangoinnovative
+WorkingDirectory=/home/djangoinnovative/alltagshelfer
+Environement="DJANGO_SETTINGS_MODULE=alltagshelfer_be.settings"
+ExecStart=/usr/local/bin/celery -A alltagshelfer_be worker --pool=solo -l info
+
+[Install]
+WantedBy=multi-user.target

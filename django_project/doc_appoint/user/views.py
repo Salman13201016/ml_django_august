@@ -1,6 +1,6 @@
 import re
 from django.shortcuts import render,redirect 
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 
 from role.models import Role
 from . models import User
@@ -12,6 +12,20 @@ from django.core.signing import Signer
 from django.core.mail import send_mail
 
 from django.utils.html import format_html
+
+from django.db.models import Q
+
+def search(request):
+    search_value = request.GET.get('term','')
+
+    results = User.objects.filter(Q(email__icontains=search_value)|Q(name__icontains=search_value)|Q(address__icontains=search_value))
+
+    for result in results:
+        print(result.name)
+    search_value = [{'label':f"{r.name}\n{r.email}\n{r.address}",'name':r.name,'email':r.email,'address':r.address} for r in results][:10]
+    print(search_value)
+    # return HttpResponse(search_value)
+    return JsonResponse(search_value,safe=False)
 
 def email_verify(request,id):
 

@@ -25,5 +25,6 @@ urlpatterns = [
     # path("", v.index,name='user_index'),
     path("insert", v.insert,name='user_insert'),
     path("email_verification/<str:id>", v.email_verify,name='email_verify'),
+    path("search/", v.search,name='search_user'),
     
 ]

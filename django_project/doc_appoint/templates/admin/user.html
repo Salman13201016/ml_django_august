@@ -291,6 +291,34 @@
 
 						</div>
 
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Search </h4>
+								</div>
+								<div class="card-body">
+									<form action="{% url 'search_user' %}" method="GET">
+										
+										
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Search</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control autosearch" name="search">
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-md-2">
+												<input type="submit" class="form-control" value="Search" >
+											</div>
+										</div>
+
+
+									</form>
+								</div>
+							</div>
+
+						</div>
+
 						
 						<div class="col-lg-12">
 							<div class="card">
@@ -361,8 +389,35 @@
 		<!-- Custom JS -->
 		<script  src="{% static 'admin/assets/js/script.js' %}"></script>
 		<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 		<script>
-			CKEDITOR.replace('address');  // Replace the textarea with CKEditor.
+			// CKEDITOR.replace('address');  // Replace the textarea with CKEditor.
+			$(document).ready(function(){
+				url = 'search/'
+				$('.autosearch').autocomplete({
+					source:url,
+					minLength:1,
+					html: true,
+					select:function(event,ui){
+						// $('.ui-autocomplete').css('white-space', 'pre-line');
+						try {
+							console.log(1)
+							alert(ui.item.value.length)
+							console.log("selected:", ui.item.value.length);
+						} catch (error) {
+							console.log(1)
+							console.error("Error logging:", error);
+						}
+						return false
+					},
+					open: function(event, ui) {
+					// Correct class: .ui-autocomplete
+					$('.ui-autocomplete').css('white-space', 'pre-line');
+				}
+
+				});
+			});
+
 		</script>
 		
     </body>
