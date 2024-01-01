@@ -17,7 +17,6 @@ from django.db.models import Q
 
 def search(request):
     search_value = request.GET.get('term','')
-
     results = User.objects.filter(Q(email__icontains=search_value)|Q(name__icontains=search_value)|Q(address__icontains=search_value))
 
     for result in results:
@@ -49,8 +48,9 @@ def email_generate(name):
     encrypted_value1 = signer.sign(v_c).split(":")[1]
     decrypted_value = signer.unsign(encrypted_value)
 
-
     link = f"<p>Congratulations Mr {name} ! For registering as a user in our doctor appointment system. To confirm the registration </p><a href='http://127.0.0.1:8000/admin/user/email_verification/"+encrypted_value1+"' target='_blank'>please click this Activation link</a>"
+
+    
     formatted_link = format_html(link)
     return encrypted_value1,formatted_link
 
