@@ -42,7 +42,13 @@ INSTALLED_APPS = [
     'role',
     'user',
     'ckeditor',
+    'social_django',
     'division',
+    'district',
+    'station',
+    'hospital_category',
+    'hospital',
+    'hospital_map',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +59,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 #celery
@@ -81,6 +88,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -134,6 +142,26 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [static_dir,]
+LOGIN_URL = 'division_index'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',  # Google authentication backend
+    'django.contrib.auth.backends.ModelBackend',  # Default Django authentication backend
+    # Add other authentication backends as needed
+]
+
+LOGIN_REDIRECT_URL = 'division_index'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1086434461459-619nsg12df35m5hfu2v8sp2pv4ctf7kr.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_PIPELINE = (
+    # ... other pipeline steps ...
+    'auth_user.pipeline.capture_social_auth_data',  # Add this line
+    # ... other pipeline steps ...
+)
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

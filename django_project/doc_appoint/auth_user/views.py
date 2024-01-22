@@ -6,10 +6,14 @@ from user.models import User
 def login(request):
     if 'user_id' in request.session:
         return redirect('index')
+    elif 'social_auth_google-oauth2' in request.session:
+        return redirect('index')
     return render(request,'login.html')
 
 def logout(request):
-    request.session.flush()
+    # request.session.flush()
+    del request.session['social_auth_google-oauth2']
+    del request.session['user_id']
     return redirect('login')
 
 def login_done(request):

@@ -24,5 +24,7 @@ urlpatterns = [
     path("admin/role/", include('role.urls')),
     path("admin/user/", include('user.urls')),
     path("admin/division/", include('division.urls')),
+    path("admin/district/", include('district.urls')),
     path("login/", include('auth_user.urls')),
+    path('social-auth/',include('social_django.urls',namespace='social')),
 ]

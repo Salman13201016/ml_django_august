@@ -188,6 +188,10 @@
 							<li> 
 								<a href="{% url 'division_index' %}"><i class="fe fe-home"></i> <span>Division</span></a>
 							</li>
+
+							<li> 
+								<a href="{% url 'district_index' %}"><i class="fe fe-home"></i> <span>District</span></a>
+							</li>
 							
 							<li class="submenu">
 								<a href="#"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
@@ -286,6 +290,13 @@
 
 
 									</form>
+
+									<div class="form-group row">
+										<div class="col-md-2">
+											<a href="{% url 'social:begin' 'google-oauth2' %}">Gmail Login</a>
+										</div>
+									</div>
+									
 								</div>
 							</div>
 

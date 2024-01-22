@@ -15,6 +15,8 @@ from django.utils.html import format_html
 
 from django.db.models import Q
 
+
+
 def search(request):
     search_value = request.GET.get('term','')
     results = User.objects.filter(Q(email__icontains=search_value)|Q(name__icontains=search_value)|Q(address__icontains=search_value))
