@@ -239,7 +239,7 @@
 									<h4 class="card-title">Hospital</h4>
 								</div>
 								<div class="card-body">
-									<form action="{% url 'hospital_insert' %}" method="POST">
+									<form action="{% url 'hospital_insert' %}" method="POST" enctype="multipart/form-data">
 										{% csrf_token %}
 										<div class="form-group row">
 											<label class="col-form-label col-md-2">Hospital Category</label>
@@ -381,7 +381,7 @@
 															<td>{{i.address}}</td>
 															<td>{{i.description}}</td>
 															<td class="w-25">
-																<img width="150px" src="/media/{{i.hos_image}}" alt="image-not-found">
+																<img width="150px" src="media/{{i.hos_image}}" alt="image-not-found">
 															</td>
 														</tr>
 													{% endfor %}
