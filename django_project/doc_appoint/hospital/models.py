@@ -16,3 +16,4 @@ class Hospitals(models.Model):
     zip_code = models.CharField(max_length=10)
     web_link = models.CharField(max_length=500)
     description = models.TextField()
+    hos_image = models.ImageField(upload_to='images/')
