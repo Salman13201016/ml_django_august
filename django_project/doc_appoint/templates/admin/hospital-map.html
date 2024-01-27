@@ -6,7 +6,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Innovative Doc appointment - Role</title>
+        <title>Innovative Doc appointment - User</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'admin/assets/img/favicon.png' %}">
@@ -19,6 +19,8 @@
 		
 		<!-- Feathericon CSS -->
         <link rel="stylesheet" href="{% static 'admin/assets/css/feathericon.min.css' %}">
+		<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    	<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 		
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{% static 'admin/assets/css/style.css' %}">
@@ -189,7 +191,7 @@
                             <li> 
 								<a href="{% url 'district_index' %}"><i class="fe fe-home"></i> <span>District</span></a>
 							</li>
-							<li> 
+							 <li> 
 								<a href="{% url 'station_index' %}"><i class="fe fe-home"></i> <span>Station</span></a>
 							</li> 
                             <li> 
@@ -200,7 +202,7 @@
 							</li>
 
 							<li> 
-								<a href="{% url 'hospital_index' %}"><i class="fe fe-home"></i> <span>Hospital Map</span></a>
+								<a href="{% url 'hospital_map_index' %}"><i class="fe fe-home"></i> <span>Hospital Map</span></a>
 							</li>
 							
 							<li class="submenu">
@@ -224,10 +226,10 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">Division Inputs</h3>
+								<h3 class="page-title">Hospital Map Inputs</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active">Division</li>
+									<li class="breadcrumb-item active">Hospital Map</li>
 								</ul>
 							</div>
 						</div>
@@ -238,43 +240,63 @@
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Divison</h4>
+									<h4 class="card-title">Hospital Map</h4>
 								</div>
-								{% if msg %}
-									{% for i in msg %}
-									
-									<div class="alert alert-success">
-										<h4 class="card-title">{{i}}</h4>
-									</div>
-									{% endfor %}
-								{% endif %}
 								<div class="card-body">
-									<form>
-										
-										<div class="form-group row">
-											<label class="col-form-label col-md-2">Division</label>
+									<form action="{% url 'hospital-map_insert' %}" method="POST">
+										{% csrf_token %}
+								 		<div class="form-group row">
+											<label class="col-form-label col-md-2">Role</label>
 											<div class="col-md-10">
-												<input type="text" class="form-control division_input" name="division">
+												<select class="form-control" name="hosmap_id">
+													<option>Select Hospital</option>
+													{% for i in hospital_data %}
+													<option value="{{i.id}}">{{i.name}}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div> 
+										{% comment %} <div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Name</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="hospital">
+											</div>
+										</div> {% endcomment %}
+
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Latitute</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="lat">
 											</div>
 										</div>
 
-                                        <input type="hidden" name="" class="csrf" value="{{csrf_token}}">
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Longitude</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="long">
+											</div>
+										</div>
+
 										<div class="form-group row">
 											<div class="col-md-2">
-												<input type="button" class="form-control sub_division" value="Add"  >
+												<input type="submit" class="form-control" value="Add" >
 											</div>
 										</div>
 
+
 									</form>
+									
 								</div>
 							</div>
 
 						</div>
 
-						<div class="col-lg-12">
+
+						
+						{% comment %} <div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Role Information</h4>
+									<h4 class="card-title">District Information</h4>
 								</div>
 								<div class="card-body">
 
@@ -283,21 +305,35 @@
 											<thead>
 												<tr>
 													<th>SL</th>
-													<th>Role</th>
-													<th>Action</th>
+													<th>Division Name</th>
+													<th>District Name</th>
 												</tr>
 											</thead>
-											<tbody class="division_table">
-												
-												
+
+                                            <tbody>
+												{% if status %}
+													{% for i in district_data %}
+														<tr>
+															<td>{{forloop.counter}}</td>
+															<td>{{i.div_id.name}}</td>
+															<td>{{i.name}}</td>
+														</tr>
+													{% endfor %}
+												{% else %}
+													<tr>
+														<td>The is no data available</td>
+														
+													</tr>
+												{% endif %}
 												
 											</tbody>
+											
 										</table>
 									</div>
 								</div>
 							</div>
-						</div>
-
+						</div> {% endcomment %}
+						
 					</div>
 				
 				</div>			
@@ -321,7 +357,37 @@
 		
 		<!-- Custom JS -->
 		<script  src="{% static 'admin/assets/js/script.js' %}"></script>
-        <script  src="{% static 'admin/assets/js/division.js' %}"></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<script>
+			// CKEDITOR.replace('address');  // Replace the textarea with CKEditor.
+			$(document).ready(function(){
+				url = 'search/'
+				$('.autosearch').autocomplete({
+					source:url,
+					minLength:1,
+					html: true,
+					select:function(event,ui){
+						// $('.ui-autocomplete').css('white-space', 'pre-line');
+						try {
+							console.log(1)
+							alert(ui.item.value.length)
+							console.log("selected:", ui.item.value.length);
+						} catch (error) {
+							console.log(1)
+							console.error("Error logging:", error);
+						}
+						return false
+					},
+					open: function(event, ui) {
+					// Correct class: .ui-autocomplete
+					$('.ui-autocomplete').css('white-space', 'pre-line');
+				}
+
+				});
+			});
+
+		</script>
 		
     </body>
 

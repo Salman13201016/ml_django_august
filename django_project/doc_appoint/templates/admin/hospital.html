@@ -6,7 +6,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-        <title>Innovative Doc appointment - Role</title>
+        <title>Innovative Doc appointment - User</title>
 		
 		<!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'admin/assets/img/favicon.png' %}">
@@ -19,6 +19,8 @@
 		
 		<!-- Feathericon CSS -->
         <link rel="stylesheet" href="{% static 'admin/assets/css/feathericon.min.css' %}">
+		<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    	<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
 		
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{% static 'admin/assets/css/style.css' %}">
@@ -200,7 +202,7 @@
 							</li>
 
 							<li> 
-								<a href="{% url 'hospital_index' %}"><i class="fe fe-home"></i> <span>Hospital Map</span></a>
+								<a href="{% url 'hospital_map_index' %}"><i class="fe fe-home"></i> <span>Hospital Map</span></a>
 							</li>
 							
 							<li class="submenu">
@@ -224,10 +226,10 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">Division Inputs</h3>
+								<h3 class="page-title">Hospital Inputs</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active">Division</li>
+									<li class="breadcrumb-item active">Hospital</li>
 								</ul>
 							</div>
 						</div>
@@ -238,43 +240,109 @@
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Divison</h4>
+									<h4 class="card-title">Hospital</h4>
 								</div>
-								{% if msg %}
-									{% for i in msg %}
-									
-									<div class="alert alert-success">
-										<h4 class="card-title">{{i}}</h4>
-									</div>
-									{% endfor %}
-								{% endif %}
 								<div class="card-body">
-									<form>
+									<form action="{% url 'hospital_insert' %}" method="POST">
+										{% csrf_token %}
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Category</label>
+											<div class="col-md-10">
+												<select class="form-control" name="cat_id">
+													<option>Select Category</option>
+													{% for i in category %}
+													<option value="{{i.id}}">{{i.name}}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Division</label>
+											<div class="col-md-10">
+												<select id="divisionSelect" class="form-control" name="division_id">
+													<option>Select Division</option>
+													{% for i in division %}
+													<option value="{{i.id}}">{{i.name}}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
 										
 										<div class="form-group row">
-											<label class="col-form-label col-md-2">Division</label>
+											<label class="col-form-label col-md-2">Hospital District</label>
 											<div class="col-md-10">
-												<input type="text" class="form-control division_input" name="division">
+												<select id="districtSelect" class="form-control" name="district_id">
+													<option>Select District</option>
+												</select>
 											</div>
 										</div>
-
-                                        <input type="hidden" name="" class="csrf" value="{{csrf_token}}">
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Station</label>
+											<div class="col-md-10">
+												<select id="stationSelect" class="form-control" name="station_id">
+													<option>Select Station</option>
+												</select>
+											</div>
+											<!-- <div class="col-md-10">
+												<select id="StationSelect" class="form-control" name="station_id">
+													<option>Select Station</option>
+													{% for i in station %}
+													<option value="{{i.id}}">{{i.name}}</option>
+													{% endfor %}
+												</select>
+											</div> -->
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Name</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="hospital_name">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Zip Code</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="zip_code">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Website</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="web_link">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Address</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="hospital_address">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Description</label>
+											<div class="col-md-10">
+												<textarea name="hospital_description" id="address" cols="50" rows="10"></textarea>
+												
+											</div>
+										</div>
 										<div class="form-group row">
 											<div class="col-md-2">
-												<input type="button" class="form-control sub_division" value="Add"  >
+												<input type="submit" class="form-control" value="Add" >
 											</div>
 										</div>
 
+
 									</form>
+									
 								</div>
 							</div>
 
 						</div>
 
+
+						
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">Role Information</h4>
+									<h4 class="card-title">District Information</h4>
 								</div>
 								<div class="card-body">
 
@@ -283,21 +351,49 @@
 											<thead>
 												<tr>
 													<th>SL</th>
-													<th>Role</th>
-													<th>Action</th>
+													<th>Hospital</th>
+													<th>Category</th>
+													<th>Division</th>
+													<th>District</th>
+													<th>Station</th>
+													<th>Zip_code</th>
+													<th>Website</th>
+													<th>Address</th>
+													<th>Description</th>
 												</tr>
 											</thead>
-											<tbody class="division_table">
-												
-												
+
+                                            <tbody>
+												{% if status %}
+													{% for i in all_data %}
+														<tr>
+															<td>{{forloop.counter}}</td>
+															<td>{{i.name}}</td>
+															<td>{{i.cat_id.name}}</td>
+															<td>{{i.div_id.name}}</td>
+															<td>{{i.dis_id.name}}</td>
+															<td>{{i.station_id.name}}</td>
+															<td>{{i.zip_code}}</td>
+															<td>{{i.web_link}}</td>
+															<td>{{i.address}}</td>
+															<td>{{i.description}}</td>
+														</tr>
+													{% endfor %}
+												{% else %}
+													<tr>
+														<td>The is no data available</td>
+														
+													</tr>
+												{% endif %}
 												
 											</tbody>
+											
 										</table>
 									</div>
 								</div>
 							</div>
 						</div>
-
+						
 					</div>
 				
 				</div>			
@@ -321,8 +417,87 @@
 		
 		<!-- Custom JS -->
 		<script  src="{% static 'admin/assets/js/script.js' %}"></script>
-        <script  src="{% static 'admin/assets/js/division.js' %}"></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<!-- District ajax  -->
+		<script>
+			$('#divisionSelect').change(function () {
+				var divisionId = $(this).val();
+				if (divisionId) {
+					$.ajax({
+						url: '{% url "get_districts" %}',
+						type: 'GET',
+						data: { 'division_id': divisionId },
+						success: function (data) {
+							console.log('Raw Response:', data);  // Log the raw response
+			
+							try {
+								
+								// Parse the JSON response
+								var districts = JSON.parse(data);
+								
+								console.log(districts)
+								// Clear existing options
+								$('#districtSelect').empty();
+			
+								// Append new options
+								districts.forEach(function (district) {
+									$('#districtSelect').append('<option value="' + district.id + '">' + district.name + '</option>');
+								});
+
+							} catch (e) {
+								console.error('Error parsing JSON:', e);
+							}
+						},
+						error: function (xhr, textStatus, errorThrown) {
+							console.log('Error:', errorThrown);
+						}
+					});
+				} else {
+					$('#districtSelect').html('<option>Select District</option>');
+				}
+			});
+		</script>
 		
+		<!-- station ajax  -->
+		<script>
+			$('#districtSelect').change(function () {
+				var districtId = $(this).val();
+				if (districtId) {
+					$.ajax({
+						url: '{% url "get_stations" %}',
+						type: 'GET',
+						data: { 'district_id': districtId },
+						success: function (data) {
+							console.log('Raw Response:', data);  // Log the raw response
+			
+							try {
+								
+								// Parse the JSON response
+								var stations = JSON.parse(data);
+								
+								console.log(stations)
+								// Clear existing options
+								$('#stationSelect').empty();
+			
+								// Append new options
+								stations.forEach(function (station) {
+									$('#stationSelect').append('<option value="' + station.id + '">' + station.name + '</option>');
+								});
+
+							} catch (e) {
+								console.error('Error parsing JSON:', e);
+							}
+						},
+						error: function (xhr, textStatus, errorThrown) {
+							console.log('Error:', errorThrown);
+						}
+					});
+				} else {
+					$('#stationSelect').html('<option>Select Station</option>');
+				}
+			});
+		</script>
     </body>
 
 <!-- Mirrored from dreamguys.co.in/demo/doccure/admin/form-basic-inputs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:54 GMT -->
