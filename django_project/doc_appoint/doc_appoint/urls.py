@@ -25,6 +25,9 @@ urlpatterns = [
     path("admin/user/", include('user.urls')),
     path("admin/division/", include('division.urls')),
     path("admin/district/", include('district.urls')),
+    path("admin/station/", include('station.urls')),
+    path("admin/hospital/", include('hospital.urls')),
+    path("admin/hospital_category/", include('hospital_category.urls')),
     path("login/", include('auth_user.urls')),
     path('social-auth/',include('social_django.urls',namespace='social')),
 ]

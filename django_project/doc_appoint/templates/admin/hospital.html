@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/form-basic-inputs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:54 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>Innovative Doc appointment - User</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'admin/assets/img/favicon.png' %}">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="{% static 'admin/assets/css/font-awesome.min.css' %}">
+		
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="{% static 'admin/assets/css/feathericon.min.css' %}">
+		<script src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+    	<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="{% static 'admin/assets/css/style.css' %}">
+		
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+    </head>
+    <body>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper">
+		
+			<!-- Header -->
+            <div class="header">
+			
+				<!-- Logo -->
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+						<img src="assets/img/logo.png" alt="Logo">
+					</a>
+					<a href="index.html" class="logo logo-small">
+						<img src="assets/img/logo-small.png" alt="Logo" width="30" height="30">
+					</a>
+                </div>
+				<!-- /Logo -->
+				
+				<a href="javascript:void(0);" id="toggle_btn">
+					<i class="fe fe-text-align-left"></i>
+				</a>
+				
+				<div class="top-nav-search">
+					<form>
+						<input type="text" class="form-control" placeholder="Search here">
+						<button class="btn" type="submit"><i class="fa fa-search"></i></button>
+					</form>
+				</div>
+				
+				<!-- Mobile Menu Toggle -->
+				<a class="mobile_btn" id="mobile_btn">
+					<i class="fa fa-bars"></i>
+				</a>
+				<!-- /Mobile Menu Toggle -->
+				
+				<!-- Header Right Menu -->
+				<ul class="nav user-menu">
+
+					<!-- Notifications -->
+					<li class="nav-item dropdown noti-dropdown">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
+						</a>
+						<div class="dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span class="notification-title">Notifications</span>
+								<a href="javascript:void(0)" class="clear-noti"> Clear All </a>
+							</div>
+							<div class="noti-content">
+								<ul class="notification-list">
+									<li class="notification-message">
+										<a href="#">
+											<div class="media">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/doctors/doctor-thumb-01.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span> Schedule <span class="noti-title">her appointment</span></p>
+													<p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="#">
+											<div class="media">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient1.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Charlene Reed</span> has booked her appointment to <span class="noti-title">Dr. Ruby Perrin</span></p>
+													<p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="#">
+											<div class="media">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient2.jpg">
+												</span>
+												<div class="media-body">
+												<p class="noti-details"><span class="noti-title">Travis Trimble</span> sent a amount of $210 for his <span class="noti-title">appointment</span></p>
+												<p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="#">
+											<div class="media">
+												<span class="avatar avatar-sm">
+													<img class="avatar-img rounded-circle" alt="User Image" src="assets/img/patients/patient3.jpg">
+												</span>
+												<div class="media-body">
+													<p class="noti-details"><span class="noti-title">Carl Kelly</span> send a message <span class="noti-title"> to his doctor</span></p>
+													<p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="#">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<!-- /Notifications -->
+					
+					<!-- User Menu -->
+					<li class="nav-item dropdown has-arrow">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<span class="user-img"><img class="rounded-circle" src="assets/img/profiles/avatar-01.jpg" width="31" alt="Ryan Taylor"></span>
+						</a>
+						<div class="dropdown-menu">
+							<div class="user-header">
+								<div class="avatar avatar-sm">
+									<img src="assets/img/profiles/avatar-01.jpg" alt="User Image" class="avatar-img rounded-circle">
+								</div>
+								<div class="user-text">
+									<h6>Ryan Taylor</h6>
+									<p class="text-muted mb-0">Administrator</p>
+								</div>
+							</div>
+							<a class="dropdown-item" href="profile.html">My Profile</a>
+							<a class="dropdown-item" href="settings.html">Settings</a>
+							<a class="dropdown-item" href="login.html">Logout</a>
+						</div>
+					</li>
+					<!-- /User Menu -->
+					
+				</ul>
+				<!-- /Header Right Menu -->
+				
+            </div>
+			<!-- /Header -->
+			
+<!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+						<ul>
+							<li class="menu-title"> 
+								<span>Main</span>
+							</li>
+							<li> 
+								<a href="{% url 'index' %}"><i class="fe fe-home"></i> <span>Role</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'index' %}"><i class="fe fe-home"></i> <span>User</span></a>
+							</li>
+
+							<li> 
+								<a href="{% url 'division_index' %}"><i class="fe fe-home"></i> <span>Division</span></a>
+							</li>
+                            <li> 
+								<a href="{% url 'district_index' %}"><i class="fe fe-home"></i> <span>District</span></a>
+							</li>
+							<li> 
+								<a href="{% url 'station_index' %}"><i class="fe fe-home"></i> <span>Station</span></a>
+							</li>
+                            <li> 
+								<a href="{% url 'hospital_index' %}"><i class="fe fe-home"></i> <span>Hospital</span></a>
+							</li>
+                            <li> 
+								<a href="{% url 'hospital_cat_index' %}"><i class="fe fe-home"></i> <span>Hospital Category</span></a>
+							</li>
+							
+							<li class="submenu">
+								<a href="#"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="invoice-report.html">Invoice Reports</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+                </div>
+            </div>
+			<!-- /Sidebar -->
+			
+			
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col">
+								<h3 class="page-title">Hospital Inputs</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Hospital</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+					
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">Hospital</h4>
+								</div>
+								<div class="card-body">
+									<form action="{% url 'hospital_insert' %}" method="POST">
+										{% csrf_token %}
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Category</label>
+											<div class="col-md-10">
+												<select class="form-control" name="cat_id">
+													<option>Select Category</option>
+													{% for i in category %}
+													<option value="{{i.id}}">{{i.name}}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Division</label>
+											<div class="col-md-10">
+												<select id="divisionSelect" class="form-control" name="division_id">
+													<option>Select Division</option>
+													{% for i in division %}
+													<option value="{{i.id}}">{{i.name}}</option>
+													{% endfor %}
+												</select>
+											</div>
+										</div>
+										
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital District</label>
+											<div class="col-md-10">
+												<select id="districtSelect" class="form-control" name="district_id">
+													<option>Select District</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Station</label>
+											<div class="col-md-10">
+												<select id="stationSelect" class="form-control" name="station_id">
+													<option>Select Station</option>
+												</select>
+											</div>
+											<!-- <div class="col-md-10">
+												<select id="StationSelect" class="form-control" name="station_id">
+													<option>Select Station</option>
+													{% for i in station %}
+													<option value="{{i.id}}">{{i.name}}</option>
+													{% endfor %}
+												</select>
+											</div> -->
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Name</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="hospital_name">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Zip Code</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="zip_code">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Website</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="web_link">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Address</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="hospital_address">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Description</label>
+											<div class="col-md-10">
+												<textarea name="hospital_description" id="address" cols="50" rows="10"></textarea>
+												
+											</div>
+										</div>
+										<div class="form-group row">
+											<div class="col-md-2">
+												<input type="submit" class="form-control" value="Add" >
+											</div>
+										</div>
+
+
+									</form>
+									
+								</div>
+							</div>
+
+						</div>
+
+
+						
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="card-header">
+									<h4 class="card-title">District Information</h4>
+								</div>
+								<div class="card-body">
+
+									<div class="table-responsive">
+										<table class="datatable table table-stripped">
+											<thead>
+												<tr>
+													<th>SL</th>
+													<th>Hospital</th>
+													<th>Category</th>
+													<th>Division</th>
+													<th>District</th>
+													<th>Station</th>
+													<th>Zip_code</th>
+													<th>Website</th>
+													<th>Address</th>
+													<th>Description</th>
+												</tr>
+											</thead>
+
+                                            <tbody>
+												{% if status %}
+													{% for i in all_data %}
+														<tr>
+															<td>{{forloop.counter}}</td>
+															<td>{{i.name}}</td>
+															<td>{{i.cat_id.name}}</td>
+															<td>{{i.div_id.name}}</td>
+															<td>{{i.dis_id.name}}</td>
+															<td>{{i.station_id.name}}</td>
+															<td>{{i.zip_code}}</td>
+															<td>{{i.web_link}}</td>
+															<td>{{i.address}}</td>
+															<td>{{i.description}}</td>
+														</tr>
+													{% endfor %}
+												{% else %}
+													<tr>
+														<td>The is no data available</td>
+														
+													</tr>
+												{% endif %}
+												
+											</tbody>
+											
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				
+				</div>			
+			</div>
+			<!-- /Main Wrapper -->
+		
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+        <script src="{% static 'admin/assets/js/jquery-3.2.1.min.js' %}"></script>
+		
+		<!-- Bootstrap Core JS -->
+        <script src="{% static 'admin/assets/js/popper.min.js' %}"></script>
+        <script src="{% static 'admin/assets/js/bootstrap.min.js' %}"></script>
+		
+		<!-- Slimscroll JS -->
+        <script src="{% static 'admin/assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+		<script src="{% static 'admin/assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+		<script src="{% static 'admin/assets/plugins/datatables/datatables.min.js' %}"></script>
+		
+		<!-- Custom JS -->
+		<script  src="{% static 'admin/assets/js/script.js' %}"></script>
+		<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<!-- District ajax  -->
+		<script>
+			$('#divisionSelect').change(function () {
+				var divisionId = $(this).val();
+				if (divisionId) {
+					$.ajax({
+						url: '{% url "get_districts" %}',
+						type: 'GET',
+						data: { 'division_id': divisionId },
+						success: function (data) {
+							console.log('Raw Response:', data);  // Log the raw response
+			
+							try {
+								
+								// Parse the JSON response
+								var districts = JSON.parse(data);
+								
+								console.log(districts)
+								// Clear existing options
+								$('#districtSelect').empty();
+			
+								// Append new options
+								districts.forEach(function (district) {
+									$('#districtSelect').append('<option value="' + district.id + '">' + district.name + '</option>');
+								});
+
+							} catch (e) {
+								console.error('Error parsing JSON:', e);
+							}
+						},
+						error: function (xhr, textStatus, errorThrown) {
+							console.log('Error:', errorThrown);
+						}
+					});
+				} else {
+					$('#districtSelect').html('<option>Select District</option>');
+				}
+			});
+		</script>
+		
+		<!-- station ajax  -->
+		<script>
+			$('#districtSelect').change(function () {
+				var districtId = $(this).val();
+				if (districtId) {
+					$.ajax({
+						url: '{% url "get_stations" %}',
+						type: 'GET',
+						data: { 'district_id': districtId },
+						success: function (data) {
+							console.log('Raw Response:', data);  // Log the raw response
+			
+							try {
+								
+								// Parse the JSON response
+								var stations = JSON.parse(data);
+								
+								console.log(stations)
+								// Clear existing options
+								$('#stationSelect').empty();
+			
+								// Append new options
+								stations.forEach(function (station) {
+									$('#stationSelect').append('<option value="' + station.id + '">' + station.name + '</option>');
+								});
+
+							} catch (e) {
+								console.error('Error parsing JSON:', e);
+							}
+						},
+						error: function (xhr, textStatus, errorThrown) {
+							console.log('Error:', errorThrown);
+						}
+					});
+				} else {
+					$('#stationSelect').html('<option>Select Station</option>');
+				}
+			});
+		</script>
+    </body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/form-basic-inputs.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:54 GMT -->
+</html>

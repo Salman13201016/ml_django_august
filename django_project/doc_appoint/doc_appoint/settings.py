@@ -103,9 +103,9 @@ WSGI_APPLICATION = "doc_appoint.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "doc_appoint",
+        "NAME": "doc_app_colaboration",
         "USER":"root",
-        "PASSWORD": "",
+        "PASSWORD": "Mahmud@100%",
         "HOST":"localhost",
         "PORT":3306
     }
