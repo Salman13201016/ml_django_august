@@ -13,6 +13,7 @@ def user(request):
     u_name = request.POST.get('name')
     u_email = request.POST.get('email')
     u_image = request.FILES.get('image')
+    
     user_obj = demo_user()
     user_obj.name = u_name
     user_obj.email = u_email
