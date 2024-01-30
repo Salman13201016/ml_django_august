@@ -25,9 +25,16 @@ urlpatterns = [
     path("admin/user/", include('user.urls')),
     path("admin/division/", include('division.urls')),
     path("admin/district/", include('district.urls')),
+<<<<<<< HEAD
     path("admin/station/", include('station.urls')),
     path("admin/hospital/", include('hospital.urls')),
     path("admin/hospital_category/", include('hospital_category.urls')),
+=======
+    path("admin/hospital_category/", include('hospital_category.urls')),
+    path("admin/station/", include('station.urls')),
+    path("admin/hospital/", include('hospital.urls')),
+>>>>>>> hospital_map_module
     path("login/", include('auth_user.urls')),
     path('social-auth/',include('social_django.urls',namespace='social')),
+    path("admin/hospital_map/", include('hospital_map.urls')),
 ]

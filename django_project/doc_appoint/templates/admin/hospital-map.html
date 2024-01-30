@@ -191,25 +191,7 @@
                             <li> 
 								<a href="{% url 'district_index' %}"><i class="fe fe-home"></i> <span>District</span></a>
 							</li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> hospital_module
-							<li> 
-								<a href="{% url 'station_index' %}"><i class="fe fe-home"></i> <span>Station</span></a>
-							</li>
-							<li> 
-								<a href="{% url 'hospital_index' %}"><i class="fe fe-home"></i> <span>Hospital</span></a>
-							</li>
-<<<<<<< HEAD
-                            <li> 
-								<a href="{% url 'hospital_cat_index' %}"><i class="fe fe-home"></i> <span>Hospital Category</span></a>
-							</li>
-=======
->>>>>>> hospital_module
-=======
-							<li> 
+							 <li> 
 								<a href="{% url 'station_index' %}"><i class="fe fe-home"></i> <span>Station</span></a>
 							</li> 
                             <li> 
@@ -220,10 +202,9 @@
 							</li>
 
 							<li> 
-								<a href="{% url 'hospital_index' %}"><i class="fe fe-home"></i> <span>Hospital Map</span></a>
+								<a href="{% url 'hospital_map_index' %}"><i class="fe fe-home"></i> <span>Hospital Map</span></a>
 							</li>
 							
->>>>>>> hospital_map_module
 							<li class="submenu">
 								<a href="#"><i class="fe fe-document"></i> <span> Reports</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -245,10 +226,10 @@
 					<div class="page-header">
 						<div class="row">
 							<div class="col">
-								<h3 class="page-title">User Inputs</h3>
+								<h3 class="page-title">Hospital Map Inputs</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-									<li class="breadcrumb-item active">User</li>
+									<li class="breadcrumb-item active">Hospital Map</li>
 								</ul>
 							</div>
 						</div>
@@ -259,32 +240,43 @@
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title">User</h4>
+									<h4 class="card-title">Hospital Map</h4>
 								</div>
 								<div class="card-body">
-									<form action="{% url 'district_insert' %}" method="POST">
+									<form action="{% url 'hospital-map_insert' %}" method="POST">
 										{% csrf_token %}
-										<div class="form-group row">
-<<<<<<< HEAD
-											<label class="col-form-label col-md-2">Division Name</label>
-=======
-											<label class="col-form-label col-md-2">Division</label>
->>>>>>> hospital_module
+								 		<div class="form-group row">
+											<label class="col-form-label col-md-2">Role</label>
 											<div class="col-md-10">
-												<select class="form-control" name="div_id">
-													<option>Select Division</option>
-													{% for i in division %}
+												<select class="form-control" name="hosmap_id">
+													<option>Select Hospital</option>
+													{% for i in hospital_data %}
 													<option value="{{i.id}}">{{i.name}}</option>
 													{% endfor %}
 												</select>
 											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-form-label col-md-2">Add District Name</label>
+										</div> 
+										{% comment %} <div class="form-group row">
+											<label class="col-form-label col-md-2">Hospital Name</label>
 											<div class="col-md-10">
-												<input type="text" class="form-control" name="dis_name">
+												<input type="text" class="form-control" name="hospital">
+											</div>
+										</div> {% endcomment %}
+
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Latitute</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="lat">
 											</div>
 										</div>
+
+										<div class="form-group row">
+											<label class="col-form-label col-md-2">Longitude</label>
+											<div class="col-md-10">
+												<input type="text" class="form-control" name="long">
+											</div>
+										</div>
+
 										<div class="form-group row">
 											<div class="col-md-2">
 												<input type="submit" class="form-control" value="Add" >
@@ -301,7 +293,7 @@
 
 
 						
-						<div class="col-lg-12">
+						{% comment %} <div class="col-lg-12">
 							<div class="card">
 								<div class="card-header">
 									<h4 class="card-title">District Information</h4>
@@ -340,7 +332,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> {% endcomment %}
 						
 					</div>
 				

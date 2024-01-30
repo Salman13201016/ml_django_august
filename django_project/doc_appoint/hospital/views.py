@@ -9,14 +9,18 @@ from hospital_category.models import Hospital_Category
 from .models import Hospitals
 from station.models import Stations
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> hospital_module
+=======
+>>>>>>> hospital_map_module
 
 # Create your views here.
 def hospital_index(request):
     category_data = Hospital_Category.objects.all()
     division_data = Divisions.objects.all()
+<<<<<<< HEAD
 <<<<<<< HEAD
     district_data = Districts.objects.select_related("div_id").all()
     station_data = Stations.objects.select_related("dis_id").all()
@@ -50,6 +54,8 @@ def hospital_insert(request):
     cat_id = request.POST.get("cat_id")
     stat_id = request.POST.get("station_id")
 =======
+=======
+>>>>>>> hospital_map_module
     district_data = Districts.objects.select_related('div_id').all()
     station_data = Stations.objects.select_related('dis_id').all()
     hospital_data = Hospitals.objects.all()
@@ -69,12 +75,18 @@ def hospital_insert(request):
     web_link = request.POST.get('web_link')
     hospital_address = request.POST.get('hospital_address')
     hospital_description = request.POST.get('hospital_description')
+<<<<<<< HEAD
     image = request.FILES.get('image')
+=======
+>>>>>>> hospital_map_module
     div_id = request.POST.get('division_id')
     dis_id = request.POST.get('district_id')
     cat_id = request.POST.get('cat_id')
     stat_id = request.POST.get('station_id')
+<<<<<<< HEAD
 >>>>>>> hospital_module
+=======
+>>>>>>> hospital_map_module
 
     dis_obj = Districts.objects.get(id=dis_id)
     div_obj = Divisions.objects.get(id=div_id)
@@ -82,6 +94,7 @@ def hospital_insert(request):
 
     cat_obj = Hospital_Category.objects.get(id=cat_id)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     Hospitals.objects.create(
         name=name,
@@ -103,6 +116,9 @@ def get_districts(request):
     districts = Districts.objects.filter(div_id=division_id).values("id", "name")
 =======
     Hospitals.objects.create(name=name, zip_code=zip_code, web_link=web_link, address=hospital_address, description=hospital_description,hos_image=image, div_id=div_obj, dis_id=dis_obj, cat_id=cat_obj, station_id=stat_obj)
+=======
+    Hospitals.objects.create(name=name, zip_code=zip_code, web_link=web_link, address=hospital_address, description=hospital_description, div_id=div_obj, dis_id=dis_obj, cat_id=cat_obj, station_id=stat_obj)
+>>>>>>> hospital_map_module
     
     # hospital_obj.name = name
     # hospital_obj.zip_code = zip_code
@@ -116,12 +132,16 @@ def get_districts(request):
 def get_districts(request):
     division_id = request.GET.get('division_id')
     districts = Districts.objects.filter(div_id=division_id).values('id', 'name')
+<<<<<<< HEAD
 >>>>>>> hospital_module
+=======
+>>>>>>> hospital_map_module
     # districts = Districts.objects.select_related('div_id').filter(div_id=division_id)
     print(districts)
     district_list = list(districts)
     json_data = json.dumps(district_list)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     return JsonResponse(json_data, safe=False, content_type="application/json")
 
@@ -130,19 +150,28 @@ def get_stations(request):
     district_id = request.GET.get("district_id")
     stations = Stations.objects.filter(dis_id=district_id).values("id", "name")
 =======
+=======
+>>>>>>> hospital_map_module
     return JsonResponse(json_data, safe=False, content_type='application/json')
 
 def get_stations(request):
     district_id = request.GET.get('district_id')
     stations = Stations.objects.filter(dis_id=district_id).values('id', 'name')
+<<<<<<< HEAD
 >>>>>>> hospital_module
+=======
+>>>>>>> hospital_map_module
     # districts = Districts.objects.select_related('div_id').filter(div_id=division_id)
     print(stations)
     stations_list = list(stations)
     json_data_station = json.dumps(stations_list)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     return JsonResponse(json_data_station, safe=False, content_type="application/json")
 =======
     return JsonResponse(json_data_station, safe=False, content_type='application/json')
 >>>>>>> hospital_module
+=======
+    return JsonResponse(json_data_station, safe=False, content_type='application/json')
+>>>>>>> hospital_map_module
